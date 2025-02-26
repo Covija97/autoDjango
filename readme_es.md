@@ -4,7 +4,7 @@
 
 > **Archivo .bat** que genera automáticamente la estructura descrita en [w3school](https://www.w3schools.com/django/) para crear proyectos Django
 
-## createdjango.bat
+## [createdjango.bat](/src/createdjango.bat)
 
 El script `createdjango.bat` automatiza la configuración de un entorno de proyecto Django. Realiza las siguientes tareas:
 
