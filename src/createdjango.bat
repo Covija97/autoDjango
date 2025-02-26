@@ -1,51 +1,51 @@
 @echo off
-REM Verificar versión de Python
+REM Check Python version
 python --version >nul 2>&1
 IF %ERRORLEVEL% NEQ 0 (
-    echo Python no está instalado. Por favor, instálalo antes de continuar.
+    echo Python is not installed. Please install it before continuing.
     exit /b
 )
 
-REM Verificar versión de pip
+REM Check pip version
 pip --version >nul 2>&1
 IF %ERRORLEVEL% NEQ 0 (
-    echo pip no está instalado. Por favor, instálalo antes de continuar.
+    echo pip is not installed. Please install it before continuing.
     exit /b
 )
 
-REM Crear entorno virtual
+REM Create virtual environment
 IF NOT EXIST myworld (
     python -m venv myworld
-    echo Entorno virtual 'myworld' creado.
+    echo Virtual environment 'myworld' created.
 ) ELSE (
-    echo El entorno virtual 'myworld' ya existe.
+    echo The virtual environment 'myworld' already exists.
 )
 
-REM Activar entorno virtual
+REM Activate virtual environment
 call myworld\Scripts\activate.bat
 
-REM Actualizar pip
+REM Upgrade pip
 python -m pip install --upgrade pip
 
-REM Instalar Django
+REM Install Django
 pip install django
 
-REM Solicitar nombre del proyecto Django
-set /p project_name=Introduce el nombre del nuevo proyecto Django: 
+REM Request Django project name
+set /p project_name=Enter the name of the new Django project: 
 
-REM Crear proyecto Django
+REM Create Django project
 django-admin startproject %project_name%
 
-REM Verificar creación del proyecto
+REM Verify project creation
 IF EXIST %project_name% (
-    echo Proyecto Django '%project_name%' creado correctamente.
+    echo Django project '%project_name%' created successfully.
 ) ELSE (
-    echo Error al crear el proyecto Django.
+    echo Error creating the Django project.
     exit /b
 )
 
-REM Crear script de ejecución
+REM Create run script
 echo @echo off > run_%project_name%.bat
 echo call myworld\Scripts\activate.bat >> run_%project_name%.bat
 echo python manage.py runserver >> run_%project_name%.bat
-echo Script de ejecución 'run_%project_name%.bat' creado para iniciar el servidor de desarrollo.
+echo Run script 'run_%project_name%.bat' created to start the development server.

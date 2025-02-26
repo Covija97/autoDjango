@@ -6,6 +6,14 @@
 
 ## [createdjango.bat](/src/createdjango.bat)
 
+### **Uso**
+
+1. Descarga el archivo [createdjango.bat](/src/createdjango.bat).
+2. Colocalo  en el directorio raíz de tu proyecto Django.
+3. Haz doble clic sobre `createdjango.bat` 
+
+### **Estructura**
+
 El script `createdjango.bat` automatiza la configuración de un entorno de proyecto Django. Realiza las siguientes tareas:
 
 1. **Verificar versión de Python**: Verifica si Python está instalado en el sistema.
