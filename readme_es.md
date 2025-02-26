@@ -1,4 +1,4 @@
-[english](readme.md)
+[english](README.md)
 
 # autoDjango
 
