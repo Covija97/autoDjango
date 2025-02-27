@@ -4,10 +4,13 @@ REM Check Python version
 echo --- Checking Python version...
 echo.
 python --version >nul 2>&1
-IF %ERRORLEVEL% NEQ 0 (
+if %ERRORLEVEL% NEQ 0 (
     echo --- Python is not installed. Please install it before continuing.
     pause
     exit /b
+) else (
+    echo --- Python is installed.
+    echo.
 )
 
 REM Check pip version
@@ -18,6 +21,9 @@ IF %ERRORLEVEL% NEQ 0 (
     echo --- pip is not installed. Please install it before continuing.
     pause
     exit /b
+) else (
+    echo --- pip is installed.
+    echo.
 )
 
 REM Create virtual environment
@@ -79,7 +85,7 @@ echo.
 django-admin startproject %project_name%
 
 REM Verify project creation
-echo Verifying project creation...
+echo --- Verifying project creation...
 echo.
 IF EXIST %project_name% (
     echo --- Django project '%project_name%' created successfully.
