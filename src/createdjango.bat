@@ -80,7 +80,7 @@ for %%i in (%invalid_names%) do (
 )
 
 REM Create Django project
-echo -- Creating Django project...
+echo ---- Creating Django project...
 echo.
 django-admin startproject %project_name%
 
@@ -92,6 +92,21 @@ IF EXIST %project_name% (
     echo ---- Error creating the Django project.
     pause
     exit /b
+)
+
+REM Install Boostrap 5 
+set /p install_bootstrap=-- Do you want to install Boostrap 5? (y/n):
+echo.
+if /i "%install_bootstrap%"=="y" (
+    echo ---- Installing Boostrap 5...
+    echo.
+    pip install django-bootstrap-v5
+    echo.
+    echo ---- Boostrap 5 installed successfully.
+    echo.
+) else (
+    echo -- Boostrap 5 not installed.
+    echo.
 )
 
 REM Create run script
