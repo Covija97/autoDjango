@@ -24,7 +24,8 @@ The `createdjango.bat` script automates the setup of a Django project environmen
 6. **Install Django**: Installs Django using pip.
 7. **Request Django project name**: Prompts the user to enter a name for the new Django project.
 8. **Create Django project**: Uses `django-admin` to create a new Django project with the specified name.
-9. **Verify project creation**: Checks if the project was created successfully and provides feedback.
-10. **Create run script**: Generates a batch file to easily start the Django development server for the new project.
+9. **Verify project creation**: Checks if the project was created successfully and provides feedback
+10. **Install Bootstrap 5**: Optionally installs Bootstrap 5 using `django-bootstrap-v5`.
+11. **Create run script**: Generates a batch file to easily start the Django development server for the new project.
 
 This script simplifies the initial setup process for Django projects, ensuring that all necessary components are installed and configured correctly.
