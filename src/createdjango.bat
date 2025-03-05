@@ -26,22 +26,26 @@ IF %ERRORLEVEL% NEQ 0 (
     echo.
 )
 
+REM Request virtual environment name
+set /p venv_name=-- Enter the name of the virtual environment:
+
 REM Create virtual environment
-echo -- Creating virtual environment...
 echo.
-IF NOT EXIST myworld (
-    python -m venv myworld
-    echo ---- Virtual environment 'myworld' created.
+echo ---- Creating virtual environment...
+echo.
+IF NOT EXIST %venv_name% (
+    python -m venv %venv_name%
+    echo ---- Virtual environment '%venv_name%' created.
     echo.
 ) ELSE (
-    echo ---- The virtual environment 'myworld' already exists.
+    echo ---- The virtual environment '%venv_name%' already exists.
     echo.
 )
 
 REM Activate virtual environment
 echo -- Activating virtual environment...
 echo.
-call myworld\Scripts\activate.bat
+call %venv_name%\Scripts\activate.bat
 
 REM Upgrade pip
 echo -- Upgrading pip...
@@ -54,14 +58,27 @@ echo -- Installing Django...
 echo.
 pip install django
 
-REM Request Django project name
+REM Install Boostrap 5 
 echo.
-set invalid_names=django myworld Django /
+set /p install_bootstrap=-- Do you want to install Boostrap 5? (y/n):
+echo.
+if /i "%install_bootstrap%"=="y" (
+    echo ---- Installing Boostrap 5...
+    echo.
+    pip install django-bootstrap-v5
+    echo.
+    echo ---- Boostrap 5 installed successfully.
+    echo.
+) else (
+    echo -- Boostrap 5 not installed.
+    echo.
+)
+
+REM Request Django project name
+set invalid_names=django %venv_name% Django /
 
 :request_project_name
-set /p project_name=--- Enter the name of the new Django project:
-echo.
-
+set /p project_name=-- Enter the name of the new Django project:
 
 REM Check if project_name is empty
 if "%project_name%"=="" (
@@ -80,9 +97,16 @@ for %%i in (%invalid_names%) do (
 )
 
 REM Create Django project
-echo ---- Creating Django project...
 echo.
-django-admin startproject %project_name%
+IF EXIST %project_name% (
+    echo ---- Project with the same name already exists.
+    echo.
+    goto create_run_script
+) ELSE (
+    echo ---- Creating Django project...
+    echo.
+    django-admin startproject %project_name%
+)
 
 REM Verify project creation
 IF EXIST %project_name% (
@@ -94,30 +118,44 @@ IF EXIST %project_name% (
     exit /b
 )
 
-REM Install Boostrap 5 
-set /p install_bootstrap=-- Do you want to install Boostrap 5? (y/n):
-echo.
-if /i "%install_bootstrap%"=="y" (
-    echo ---- Installing Boostrap 5...
-    echo.
-    pip install django-bootstrap-v5
-    echo.
-    echo ---- Boostrap 5 installed successfully.
-    echo.
-) else (
-    echo -- Boostrap 5 not installed.
-    echo.
-)
-
+:create_run_script
 REM Create run script
 echo -- Creating run script...
 echo.
 echo @echo off                                  > run_%project_name%.bat
 echo title Run server - %project_name%          >> run_%project_name%.bat
-echo call myworld\Scripts\activate.bat          >> run_%project_name%.bat
+echo call %venv_name%\Scripts\activate.bat      >> run_%project_name%.bat
 echo python %project_name%\manage.py runserver  >> run_%project_name%.bat
 echo pause                                      >> run_%project_name%.bat
 echo ---- Run script 'run_%project_name%.bat' created successfully.
+echo.
+
+REM Create aplications script
+echo -- Creating applications script...
+echo.
+echo @echo off                                                  > apps_%project_name%.bat
+echo title Create application - %project_name%                  >> apps_%project_name%.bat
+echo cd %project_name%                                          >> apps_%project_name%.bat
+echo :start                                                     >> apps_%project_name%.bat
+echo set /p app_name=-- Enter the name of the new application:  >> apps_%project_name%.bat
+echo if %%app_name%%=="" (                                      >> apps_%project_name%.bat
+echo     echo ---- Application name cannot be empty.            >> apps_%project_name%.bat
+echo     goto start                                             >> apps_%project_name%.bat
+echo )                                                          >> apps_%project_name%.bat
+echo if exist %%app_name%% (                                    >> apps_%project_name%.bat
+echo     echo ---- Application with the same name already exists.>> apps_%project_name%.bat
+echo     goto start                                             >> apps_%project_name%.bat
+echo )                                                          >> apps_%project_name%.bat
+echo python manage.py startapp %%app_name%%                     >> apps_%project_name%.bat
+echo REM Checking if the application was created successfully   >> apps_%project_name%.bat
+echo IF EXIST %%app_name%% (                                    >> apps_%project_name%.bat
+echo     echo ---- Application '%%app_name%%' created successfully.>> apps_%project_name%.bat
+echo ) ELSE (                                                   >> apps_%project_name%.bat
+echo     echo ---- Error creating the application.               >> apps_%project_name%.bat
+echo )                                                          >> apps_%project_name%.bat
+echo pause                                                      >> apps_%project_name%.bat
+echo exit /b                                                    >> apps_%project_name%.bat
+echo ---- Applications script 'apps_%project_name%.bat' created successfully.
 echo.
 
 REM Finish
