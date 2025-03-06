@@ -138,23 +138,37 @@ echo title Create application - %project_name%                  >> apps_%project
 echo cd %project_name%                                          >> apps_%project_name%.bat
 echo :start                                                     >> apps_%project_name%.bat
 echo set /p app_name=-- Enter the name of the new application:  >> apps_%project_name%.bat
+echo echo.                                                      >> apps_%project_name%.bat   
 echo if %%app_name%%=="" (                                      >> apps_%project_name%.bat
 echo     echo ---- Application name cannot be empty.            >> apps_%project_name%.bat
+echo     echo.                                                  >> apps_%project_name%.bat   
 echo     goto start                                             >> apps_%project_name%.bat
 echo )                                                          >> apps_%project_name%.bat
 echo if exist %%app_name%% (                                    >> apps_%project_name%.bat
 echo     echo ---- Application with the same name already exists.>> apps_%project_name%.bat
+echo     echo.                                                  >> apps_%project_name%.bat   
 echo     goto start                                             >> apps_%project_name%.bat
 echo )                                                          >> apps_%project_name%.bat
 echo python manage.py startapp %%app_name%%                     >> apps_%project_name%.bat
 echo REM Checking if the application was created successfully   >> apps_%project_name%.bat
 echo IF EXIST %%app_name%% (                                    >> apps_%project_name%.bat
 echo     echo ---- Application '%%app_name%%' created successfully.>> apps_%project_name%.bat
+echo     echo.                                                  >> apps_%project_name%.bat   
 echo ) ELSE (                                                   >> apps_%project_name%.bat
-echo     echo ---- Error creating the application.               >> apps_%project_name%.bat
+echo     echo ---- Error creating the application.              >> apps_%project_name%.bat
+echo     echo.                                                  >> apps_%project_name%.bat   
 echo )                                                          >> apps_%project_name%.bat
-echo pause                                                      >> apps_%project_name%.bat
-echo exit /b                                                    >> apps_%project_name%.bat
+echo set /p app_name=-- You want to create another application? (y/n):>> apps_%project_name%.bat
+echo echo.                                                      >> apps_%project_name%.bat
+echo if /i "%%app_name%%"=="y" (                                >> apps_%project_name%.bat
+echo     goto start                                             >> apps_%project_name%.bat
+echo ) ELSE (                                                   >> apps_%project_name%.bat
+echo     echo ---- Applications script finished.                >> apps_%project_name%.bat
+echo     echo.                                                  >> apps_%project_name%.bat
+echo     pause                                                  >> apps_%project_name%.bat
+echo     exit /b                                                >> apps_%project_name%.bat
+echo )                                                          >> apps_%project_name%.bat
+
 echo ---- Applications script 'apps_%project_name%.bat' created successfully.
 echo.
 
