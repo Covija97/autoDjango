@@ -58,22 +58,6 @@ echo -- Installing Django...
 echo.
 pip install django
 
-REM Install Boostrap 5 
-echo.
-set /p install_bootstrap=-- Do you want to install Boostrap 5? (y/n):
-echo.
-if /i "%install_bootstrap%"=="y" (
-    echo ---- Installing Boostrap 5...
-    echo.
-    pip install django-bootstrap-v5
-    echo.
-    echo ---- Boostrap 5 installed successfully.
-    echo.
-) else (
-    echo -- Boostrap 5 not installed.
-    echo.
-)
-
 REM Request Django project name
 set invalid_names=django %venv_name% Django /
 
@@ -118,7 +102,18 @@ IF EXIST %project_name% (
     exit /b
 )
 
-:create_run_script
+REM Create instalated modules script
+echo -- Creating script to install required modules...
+echo.
+echo @echo off                                                  > install_modules.bat
+echo call %venv_name%\Scripts\activate.bat                      >> install_modules.bat
+echo set /p module=-- Enter the name of the module to install:  >> install_modules.bat
+echo.                                                           >> install_modules.bat
+echo -- Installing %module% module...                           >> install_modules.bat
+echo pip install %module%                                       >> install_modules.bat
+echo.                                                           >> install_modules.bat
+echo -- %module% module installed.                              >> install_modules.bat
+
 REM Create run script
 echo -- Creating run script...
 echo.
@@ -164,8 +159,6 @@ echo if /i "%%app_name%%"=="y" (                                >> apps_%project
 echo     goto start                                             >> apps_%project_name%.bat
 echo ) ELSE (                                                   >> apps_%project_name%.bat
 echo     echo ---- Applications script finished.                >> apps_%project_name%.bat
-echo     echo.                                                  >> apps_%project_name%.bat
-echo     pause                                                  >> apps_%project_name%.bat
 echo     exit /b                                                >> apps_%project_name%.bat
 echo )                                                          >> apps_%project_name%.bat
 
