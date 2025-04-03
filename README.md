@@ -2,31 +2,38 @@
 
 # autoDjango
 
-> **Batch file** that automatically generates the structure described in [w3school](https://www.w3schools.com/django/) to create Django projects
+> **Batch file** that automates the creation and setup of Django projects, including virtual environments, project initialization, and utility scripts.
 
 ## [createdjango.bat](/src/createdjango.bat)
 
 ### **Usage**
 
 1. Download the file [createdjango.bat](/src/createdjango.bat).
-2. Place it in the root directory of your Django project.
-3. Double-click on `createdjango.bat`.
+2. Place it in the directory where you want to create your Django project.
+3. Double-click on `createdjango.bat` and follow the prompts.
 
-### **Structure**
+### **Features**
 
-The `createdjango.bat` script automates the setup of a Django project environment. It performs the following tasks:
+The `createdjango.bat` script performs the following tasks:
 
-1. **Check Python version**: Verifies if Python is installed on the system.
-2. **Check pip version**: Ensures that pip, the Python package installer, is available.
-3. **Create virtual environment**: Prompts the user to enter a name for the virtual environment and creates it if it doesn't exist.
-4. **Activate virtual environment**: Activates the specified virtual environment.
-5. **Upgrade pip**: Upgrades pip to the latest version within the virtual environment.
-6. **Install Django**: Installs Django using pip.
-7. **Request Django project name**: Prompts the user to enter a name for the new Django project, ensuring it is valid and not already in use.
-8. **Create Django project**: Uses `django-admin` to create a new Django project with the specified name.
-9. **Verify project creation**: Checks if the project was created successfully and provides feedback.
-10. **Create module installation script**: Generates a batch file (`install_modules.bat`) to install additional Python modules within the virtual environment.
-11. **Create run script**: Generates a batch file (`run_<project_name>.bat`) to easily start the Django development server for the new project.
-12. **Create applications script**: Generates a batch file (`apps_<project_name>.bat`) to create new Django applications within the project.
+1. **Check Python version**: Ensures Python is installed on the system.
+2. **Check pip version**: Verifies that pip is available.
+3. **Create virtual environment**: Prompts for a virtual environment name and creates it if it doesn't exist.
+4. **Activate virtual environment**: Activates the virtual environment.
+5. **Upgrade pip**: Updates pip to the latest version.
+6. **Install Django**: Installs Django in the virtual environment.
+7. **Request Django project name**: Ensures the project name is valid and not already in use.
+8. **Create Django project**: Initializes a new Django project using `django-admin`.
+9. **Verify project creation**: Confirms the project was created successfully.
+10. **Generate utility scripts**:
+    - **Module installation script**: Creates `CD_install_modules.bat` to install additional Python modules.
+    - **Run server script**: Creates `CD_run_<project_name>.bat` to start the Django development server.
+    - **Application creation script**: Creates `CD_create_apps.bat` to add new Django applications to the project.
 
-This script simplifies the initial setup process for Django projects, ensuring that all necessary components are installed and configured correctly.
+### **Generated Scripts**
+
+- **`CD_install_modules.bat`**: Allows you to install additional Python modules and reminds you to add them to `INSTALLED_APPS` in your Django settings.
+- **`CD_run_<project_name>.bat`**: Activates the virtual environment and starts the Django development server.
+- **`CD_create_apps.bat`**: Automates the creation of new Django applications within the project.
+
+This script simplifies the setup process for Django projects, ensuring all necessary components are configured correctly.

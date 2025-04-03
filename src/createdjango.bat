@@ -136,41 +136,41 @@ echo.
 REM Create aplications script
 echo -- Creating applications script...
 echo.
-echo @echo off                                                  > CD_apps_%project_name%.bat
-echo title Create application - %project_name%                  >> CD_apps_%project_name%.bat
-echo cd %project_name%                                          >> CD_apps_%project_name%.bat
-echo :start                                                     >> CD_apps_%project_name%.bat
-echo set /p app_name=-- Enter the name of the new application:  >> CD_apps_%project_name%.bat
-echo echo.                                                      >> CD_apps_%project_name%.bat   
-echo if %%app_name%%=="" (                                      >> CD_apps_%project_name%.bat
-echo     echo ---- Application name cannot be empty.            >> CD_apps_%project_name%.bat
-echo     echo.                                                  >> CD_apps_%project_name%.bat   
-echo     goto start                                             >> CD_apps_%project_name%.bat
-echo )                                                          >> CD_apps_%project_name%.bat
-echo if exist %%app_name%% (                                    >> CD_apps_%project_name%.bat
-echo     echo ---- Application with the same name already exists.>> CD_apps_%project_name%.bat
-echo     echo.                                                  >> CD_apps_%project_name%.bat   
-echo     goto start                                             >> CD_apps_%project_name%.bat
-echo )                                                          >> CD_apps_%project_name%.bat
-echo python manage.py startapp %%app_name%%                     >> CD_apps_%project_name%.bat
-echo REM Checking if the application was created successfully   >> CD_apps_%project_name%.bat
-echo IF EXIST %%app_name%% (                                    >> CD_apps_%project_name%.bat
-echo     echo ---- Application '%%app_name%%' created successfully.>> CD_apps_%project_name%.bat
-echo     echo.                                                  >> CD_apps_%project_name%.bat   
-echo ) ELSE (                                                   >> CD_apps_%project_name%.bat
-echo     echo ---- Error creating the application.              >> CD_apps_%project_name%.bat
-echo     echo.                                                  >> CD_apps_%project_name%.bat   
-echo )                                                          >> CD_apps_%project_name%.bat
-echo set /p app_name=-- You want to create another application? (y/n):>> CD_apps_%project_name%.bat
-echo echo.                                                      >> CD_apps_%project_name%.bat
-echo if /i "%%app_name%%"=="y" (                                >> CD_apps_%project_name%.bat
-echo     goto start                                             >> CD_apps_%project_name%.bat
-echo ) ELSE (                                                   >> CD_apps_%project_name%.bat
-echo     echo ---- Applications script finished.                >> CD_apps_%project_name%.bat
-echo     exit /b                                                >> CD_apps_%project_name%.bat
-echo )                                                          >> CD_apps_%project_name%.bat
+echo @echo off                                                  > CD_create_apps.bat
+echo title Create application - %project_name%                  >> CD_create_apps.bat
+echo cd %project_name%                                          >> >> CD_create_apps.bat
+echo :start                                                     >> >> CD_create_apps.bat
+echo set /p app_name=-- Enter the name of the new application:  >> >> CD_create_apps.bat
+echo echo.                                                      >> >> CD_create_apps.bat   
+echo if %%app_name%%=="" (                                      >> >> CD_create_apps.bat
+echo     echo ---- Application name cannot be empty.            >> >> CD_create_apps.bat
+echo     echo.                                                  >> >> CD_create_apps.bat   
+echo     goto start                                             >> >> CD_create_apps.bat
+echo )                                                          >> >> CD_create_apps.bat
+echo if exist %%app_name%% (                                    >> >> CD_create_apps.bat
+echo     echo ---- Application with the same name already exists.>> >> CD_create_apps.bat
+echo     echo.                                                  >> >> CD_create_apps.bat   
+echo     goto start                                             >> >> CD_create_apps.bat
+echo )                                                          >> >> CD_create_apps.bat
+echo python manage.py startapp %%app_name%%                     >> >> CD_create_apps.bat
+echo REM Checking if the application was created successfully   >> >> CD_create_apps.bat
+echo IF EXIST %%app_name%% (                                    >> >> CD_create_apps.bat
+echo     echo ---- Application '%%app_name%%' created successfully.>> >> CD_create_apps.bat
+echo     echo.                                                  >> >> CD_create_apps.bat   
+echo ) ELSE (                                                   >> >> CD_create_apps.bat
+echo     echo ---- Error creating the application.              >> >> CD_create_apps.bat
+echo     echo.                                                  >> >> CD_create_apps.bat   
+echo )                                                          >> >> CD_create_apps.bat
+echo set /p app_name=-- You want to create another application? (y/n):>> >> CD_create_apps.bat
+echo echo.                                                      >> >> CD_create_apps.bat
+echo if /i "%%app_name%%"=="y" (                                >> >> CD_create_apps.bat
+echo     goto start                                             >> >> CD_create_apps.bat
+echo ) ELSE (                                                   >> >> CD_create_apps.bat
+echo     echo ---- Applications script finished.                >> >> CD_create_apps.bat
+echo     exit /b                                                >> >> CD_create_apps.bat
+echo )                                                          >> >> CD_create_apps.bat
 
-echo ---- Applications script 'CD_apps_%project_name%.bat' created successfully.
+echo ---- Applications script '>> CD_create_apps.bat' created successfully.
 echo.
 
 REM Finish
