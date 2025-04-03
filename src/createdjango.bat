@@ -170,7 +170,7 @@ echo     echo ---- Applications script finished.                >> CD_create_app
 echo     exit /b                                                >> CD_create_apps.bat
 echo )                                                          >> CD_create_apps.bat
 
-echo ---- Applications script '>> CD_create_apps.bat' created successfully.
+echo ---- Applications script 'CD_create_apps.bat' created successfully.
 echo.
 
 REM Finish
