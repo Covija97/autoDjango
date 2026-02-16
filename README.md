@@ -1,4 +1,4 @@
-[<img src="http://www.flags.net/images/largeflags/SPAN0001.GIF" alt="Español" width="50">](readme_es.md)
+[Español](readme_es.md)
 
 # autoDjango
 
